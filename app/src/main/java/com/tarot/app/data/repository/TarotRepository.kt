@@ -4,7 +4,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TarotRepository @Inject constructor() {
+class TarotRepository {
     private var cards: List<TarotCard> = emptyList()
     private var loaded = false
 

@@ -25,9 +25,9 @@ data class BottomNavItem(val route: String, val label: String, val icon: ImageVe
 fun AppNavigation() {
     val navController = rememberNavController()
     val items = listOf(
-        BottomNavItem("daily", "Daily", Icons.Default.AutoAwesome),
-        BottomNavItem("spreads", "Spreads", Icons.Default.Shuffle),
-        BottomNavItem("deck", "Deck", Icons.Default.Deck)
+        BottomNavItem("daily", "Diaria", Icons.Default.AutoAwesome),
+        BottomNavItem("spreads", "Tiradas", Icons.Default.Shuffle),
+        BottomNavItem("deck", "Mazo", Icons.Default.Deck)
     )
 
     Scaffold(
