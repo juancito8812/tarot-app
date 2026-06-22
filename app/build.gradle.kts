@@ -9,7 +9,7 @@ android {
     namespace = "com.tarot.app"
     compileSdk = 36
     defaultConfig {
-        applicationId = "com.tarot.app"
+        applicationId = "com.juancito8812.tarotapp"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
