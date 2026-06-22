@@ -11,7 +11,9 @@ class DrawSpreadUseCase @Inject constructor(
         val rng = if (seed != null) Random(seed) else Random
         val drawn = mutableListOf<CardReading>()
         val working = repository.getAllCards().toMutableList()
+        if (working.isEmpty()) return ReadingResult(spread = spread, cards = drawn)
         for (i in 0 until spread.cardCount) {
+            if (working.isEmpty()) break
             val idx = rng.nextInt(working.size)
             val card = working.removeAt(idx)
             val isReversed = rng.nextInt(5) == 0

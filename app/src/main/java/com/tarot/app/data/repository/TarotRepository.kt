@@ -14,7 +14,7 @@ class TarotRepository {
     }
 
     fun getAllCards(): List<TarotCard> {
-        check(loaded) { "Repository not loaded — call load() first" }
+        if (!loaded) return emptyList()
         return cards
     }
 
