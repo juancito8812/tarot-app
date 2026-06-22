@@ -26,7 +26,7 @@ fun SpreadsScreen(viewModel: SpreadViewModel = hiltViewModel()) {
     ) {
         val reading = currentReading
         if (reading != null) {
-            Text("Your Reading", style = MaterialTheme.typography.headlineMedium)
+            Text("Tu Lectura", style = MaterialTheme.typography.headlineMedium)
             Spacer(Modifier.height(8.dp))
             Text(
                 text = reading.spread.name,
@@ -36,10 +36,10 @@ fun SpreadsScreen(viewModel: SpreadViewModel = hiltViewModel()) {
             SpreadLayout(readings = reading.cards)
             Spacer(Modifier.height(16.dp))
             OutlinedButton(onClick = { viewModel.clearReading() }) {
-                Text("New Reading")
+                Text("Nueva Lectura")
             }
         } else {
-            Text("Choose a Spread", style = MaterialTheme.typography.headlineMedium)
+            Text("Elige una Tirada", style = MaterialTheme.typography.headlineMedium)
             Spacer(Modifier.height(24.dp))
             Spreads.all.forEach { spread ->
                 Card(
@@ -57,7 +57,7 @@ fun SpreadsScreen(viewModel: SpreadViewModel = hiltViewModel()) {
                             color = MaterialTheme.colorScheme.onPrimary
                         )
                         Text(
-                            text = "${spread.cardCount} cards — ${spread.positions.joinToString(", ") { it.label }}",
+                            text = "${spread.cardCount} cartas — ${spread.positions.joinToString(", ") { it.label }}",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
                         )

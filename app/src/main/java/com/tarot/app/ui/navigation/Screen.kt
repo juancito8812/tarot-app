@@ -6,7 +6,7 @@ import androidx.compose.material.icons.filled.Shuffle
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class Screen(val route: String, val label: String, val icon: ImageVector) {
-    data object Daily : Screen("daily", "Daily", Icons.Default.AutoAwesome)
-    data object Spreads : Screen("spreads", "Spreads", Icons.Default.Shuffle)
-    data object Deck : Screen("deck", "Deck", Icons.Default.Deck)
+    data object Daily : Screen("daily", "Diaria", Icons.Default.AutoAwesome)
+    data object Spreads : Screen("spreads", "Tiradas", Icons.Default.Shuffle)
+    data object Deck : Screen("deck", "Mazo", Icons.Default.Deck)
 }

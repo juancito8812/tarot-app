@@ -4,23 +4,23 @@ data class Spread(val name: String, val cardCount: Int, val positions: List<Spre
 data class SpreadPosition(val index: Int, val label: String, val description: String)
 
 object Spreads {
-    val oneCard = Spread("One Card", 1, listOf(SpreadPosition(0, "The Card", "Your guidance for today")))
-    val threeCard = Spread("Three Cards", 3, listOf(
-        SpreadPosition(0, "Past", "What has shaped this situation"),
-        SpreadPosition(1, "Present", "What is happening now"),
-        SpreadPosition(2, "Future", "What is to come")
+    val oneCard = Spread("Una Carta", 1, listOf(SpreadPosition(0, "La Carta", "Tu guía para hoy")))
+    val threeCard = Spread("Tres Cartas", 3, listOf(
+        SpreadPosition(0, "Pasado", "Lo que ha moldeado esta situación"),
+        SpreadPosition(1, "Presente", "Lo que está sucediendo ahora"),
+        SpreadPosition(2, "Futuro", "Lo que está por venir")
     ))
-    val celticCross = Spread("Celtic Cross", 10, listOf(
-        SpreadPosition(0, "Present", "Current situation"),
-        SpreadPosition(1, "Challenge", "What crosses you"),
-        SpreadPosition(2, "Past", "What is below you"),
-        SpreadPosition(3, "Future", "What is before you"),
-        SpreadPosition(4, "Above", "Conscious goals"),
-        SpreadPosition(5, "Below", "Subconscious influences"),
-        SpreadPosition(6, "Advice", "Your approach"),
-        SpreadPosition(7, "External", "Environment and others"),
-        SpreadPosition(8, "Hopes", "Hopes and fears"),
-        SpreadPosition(9, "Outcome", "Final result")
+    val celticCross = Spread("Cruz Celta", 10, listOf(
+        SpreadPosition(0, "Presente", "Situación actual"),
+        SpreadPosition(1, "Desafío", "Lo que te cruza"),
+        SpreadPosition(2, "Pasado", "Lo que está debajo de ti"),
+        SpreadPosition(3, "Futuro", "Lo que está frente a ti"),
+        SpreadPosition(4, "Arriba", "Metas conscientes"),
+        SpreadPosition(5, "Abajo", "Influencias subconscientes"),
+        SpreadPosition(6, "Consejo", "Tu enfoque"),
+        SpreadPosition(7, "Externo", "Entorno y otros"),
+        SpreadPosition(8, "Esperanzas", "Esperanzas y miedos"),
+        SpreadPosition(9, "Resultado", "Resultado final")
     ))
     val all = listOf(oneCard, threeCard, celticCross)
 }

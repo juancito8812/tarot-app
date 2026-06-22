@@ -23,7 +23,7 @@ fun CardDetailScreen(card: TarotCard, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
-            TextButton(onClick = onDismiss) { Text("Close") }
+            TextButton(onClick = onDismiss) { Text("Cerrar") }
         },
         title = { Text(card.name, style = MaterialTheme.typography.headlineMedium) },
         text = {
@@ -47,14 +47,14 @@ fun CardDetailScreen(card: TarotCard, onDismiss: () -> Unit) {
                     )
                 }
                 Spacer(Modifier.height(12.dp))
-                Text("Upright: ${card.upright}", style = MaterialTheme.typography.bodyLarge)
+                Text("Derecha: ${card.upright}", style = MaterialTheme.typography.bodyLarge)
                 Spacer(Modifier.height(8.dp))
-                Text("Reversed: ${card.reversed}", style = MaterialTheme.typography.bodyMedium)
+                Text("Invertida: ${card.reversed}", style = MaterialTheme.typography.bodyMedium)
                 Spacer(Modifier.height(8.dp))
                 if (card.element != null) {
-                    Text("Element: ${card.element}", style = MaterialTheme.typography.labelLarge)
+                    Text("Elemento: ${card.element}", style = MaterialTheme.typography.labelLarge)
                 }
-                Text("Keywords: ${card.keywords.joinToString(", ")}", style = MaterialTheme.typography.bodyMedium)
+                Text("Palabras clave: ${card.keywords.joinToString(", ")}", style = MaterialTheme.typography.bodyMedium)
             }
         }
     )

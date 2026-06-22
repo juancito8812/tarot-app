@@ -26,7 +26,7 @@ fun SpreadLayout(readings: List<CardReading>, modifier: Modifier = Modifier) {
 @Composable
 private fun CelticCrossLayout(readings: List<CardReading>, modifier: Modifier = Modifier) {
     Column(modifier = modifier.verticalScroll(rememberScrollState()).padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("Layout", style = MaterialTheme.typography.titleMedium)
+        Text("Lectura", style = MaterialTheme.typography.titleMedium)
         Spacer(Modifier.height(8.dp))
         readings.forEachIndexed { i, reading ->
             ReadingCard(reading)
@@ -44,14 +44,14 @@ private fun ReadingCard(reading: CardReading) {
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "${reading.position?.label ?: "Card"}", style = MaterialTheme.typography.labelLarge)
+            Text(text = "${reading.position?.label ?: "Carta"}", style = MaterialTheme.typography.labelLarge)
             if (reading.position?.description != null) {
                 Text(text = reading.position.description, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
             }
             Spacer(Modifier.height(8.dp))
             Text(reading.card.name, style = MaterialTheme.typography.titleLarge)
             Text(text = reading.meaning, style = MaterialTheme.typography.bodyLarge)
-            if (reading.isReversed) { Text("Reversed", style = MaterialTheme.typography.labelLarge) }
+            if (reading.isReversed) { Text("Invertida", style = MaterialTheme.typography.labelLarge) }
         }
     }
 }

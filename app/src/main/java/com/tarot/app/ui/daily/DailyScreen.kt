@@ -40,11 +40,11 @@ fun DailyScreen(viewModel: DailyViewModel = hiltViewModel()) {
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Today's Card",
-            style = MaterialTheme.typography.headlineLarge,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
+            Text(
+                text = "Carta del Día",
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
 
         Box(
             modifier = Modifier
@@ -63,7 +63,9 @@ fun DailyScreen(viewModel: DailyViewModel = hiltViewModel()) {
                 val resId = context.resources
                     .getIdentifier(card.image, "drawable", context.packageName)
                 Card(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer(rotationY = 180f),
                     shape = RoundedCornerShape(8.dp),
                     elevation = CardDefaults.cardElevation(8.dp)
                 ) {
@@ -82,7 +84,7 @@ fun DailyScreen(viewModel: DailyViewModel = hiltViewModel()) {
                         Text(card.name, style = MaterialTheme.typography.titleLarge)
                         Text(cardReading.meaning, style = MaterialTheme.typography.bodyMedium)
                         if (cardReading.isReversed) {
-                            Text("(Reversed)", style = MaterialTheme.typography.labelLarge)
+                            Text("(Invertida)", style = MaterialTheme.typography.labelLarge)
                         }
                     }
                 }
@@ -92,7 +94,7 @@ fun DailyScreen(viewModel: DailyViewModel = hiltViewModel()) {
         Spacer(Modifier.height(24.dp))
 
         Text(
-            text = "Tap the card to reveal your daily guidance",
+            text = "Toca la carta para revelar tu guía diaria",
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.secondary
