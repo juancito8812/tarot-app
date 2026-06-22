@@ -5,10 +5,84 @@ Aplicación Android de Tarot con Lectura Diaria, Tiradas y Mazo completo. 100% o
 ## ✨ Características
 
 - **Lectura Diaria** — carta aleatoria con animación 3D flip y efecto glow pulsante
-- **Tiradas** — 3 tipos de tirada (1, 3 o 10 cartas) con layout Celtic Cross y badges de posición
+- **Tiradas** — 3 tipos (1, 3 o 10 cartas) con layout Celtic Cross y badges de posición numerados
 - **Mazo Completo** — grid de 78 cartas con imágenes Rider-Waite-Smith y detalle en diálogo
 - **Offline total** — sin conexión a internet, todos los datos embebidos
 - **UI mística** — fondo gradiente oscuro, bordes dorados, tipografía serif, paleta burdeos/dorado
+
+## 🎨 Diseño visual
+
+Sistema de diseño completo en `.interface-design/system.md`.
+
+### Paleta
+
+```
+▌ClassicBurgundy  ████████  #800020  — Barras, primary
+▌DarkBurgundy     ████████  #4D0013  — Dorso cartas, badges
+▌ClassicGold      ████████  #C9A84C  — Acentos, secondary
+▌Parchment        ████████  #F5E6C8  — Superficie cartas
+▌CardBorderGold   ████████  #D4AF37  — Bordes dorados
+```
+
+Fondo gradiente vertical: `#1A0005 ➔ #3D0C11 ➔ #1A0005` en todas las pantallas.
+
+### Pantallas
+
+```
+┌──────────────────────────────────────┐
+│  Tarot                         ✦ Diaria  │  ← TopAppBar burdeos/dorado
+├──────────────────────────────────────┤
+│                                      │
+│        ✦ Carta del Día ✦           │  ← título serif dorado
+│        ───────────────              │  ← divisor dorado
+│                                      │
+│       ┌────────────────┐            │
+│       │ ░░░░░░░░░░░░░  │            │  ← dorso DarkBurgundy
+│       │ ░     ✦     ░  │            │     borde dorado doble
+│       │ ░░░░░░░░░░░░░  │            │
+│       └────────────────┘            │
+│                                      │
+│    Toca la carta para revelar...    │  ← texto con glow pulsante
+│                                      │
+├──────────────────────────────────────┤
+│  ✦ Diaria    Tiradas    Mazo       │  ← BottomNav burdeos/dorado
+└──────────────────────────────────────┘
+
+┌──────────────────────────────────────┐
+│  ✦ Elige una Tirada ✦              │  ← SpreadsScreen
+│  ───────────────                     │
+│                                      │
+│  ┌──────────────────────────────┐   │
+│  │ Una Carta                    │   │  ← spread card borde dorado
+│  │ 1 carta — Mensaje directo    │   │     fondo ClassicBurgundy
+│  └──────────────────────────────┘   │
+│                                      │
+│  ┌──────────────────────────────┐   │
+│  │ Tres Cartas                  │   │
+│  │ 3 cartas — Pasado, presente… │   │
+│  └──────────────────────────────┘   │
+│                                      │
+│  ┌──────────────────────────────┐   │
+│  │ Cruz Celta                   │   │
+│  │ 10 cartas — Situación…       │   │
+│  └──────────────────────────────┘   │
+└──────────────────────────────────────┘
+
+┌──────────────────────────────────────┐
+│                                      │
+│  ┌──────┐ ┌──────┐ ┌──────┐        │
+│  │ RWS  │ │ RWS  │ │ RWS  │        │  ← Mazo: grid 3 columnas
+│  │ img  │ │ img  │ │ img  │        │     cartas con borde dorado
+│  │ElLoco│ │Mago  │ │Sacer│        │     fondo Parchment
+│  └──────┘ └──────┘ └──────┘        │
+│                                      │
+│  ┌──────┐ ┌──────┐ ┌──────┐        │
+│  │ RWS  │ │ RWS  │ │ RWS  │        │
+│  │ img  │ │ img  │ │ img  │        │
+│  │Empera│ │Emper │ │Sumo  │        │
+│  └──────┘ └──────┘ └──────┘        │
+└──────────────────────────────────────┘
+```
 
 ## Stack técnico
 
@@ -36,7 +110,7 @@ Aplicación Android de Tarot con Lectura Diaria, Tiradas y Mazo completo. 100% o
 ./gradlew :app:assembleDebug
 ```
 
-APK generado en: `app/build/outputs/apk/debug/app-debug.apk`
+APK en `app/build/outputs/apk/debug/app-debug.apk`
 
 ## Tests
 
@@ -44,48 +118,20 @@ APK generado en: `app/build/outputs/apk/debug/app-debug.apk`
 ./gradlew :app:testDebugUnitTest
 ```
 
-17 tests (unitarios, sin emulador):
-
-- Parseo de JSON de cartas
-- Consultas del repositorio
-- Casos de uso (tiradas 1/3/10, manejo de errores)
-- ViewModels (carga de mazo, carta diaria, selector de tirada)
+17 tests unitarios: parseo JSON, repositorio, casos de uso (1/3/10 cartas + errores), ViewModels.
 
 ## CI/CD
 
 | Workflow | Trigger | Acción |
 |----------|---------|--------|
 | CI | push/PR a master | `testDebugUnitTest` + `lintDebug` |
-| Build APK | push/PR + workflow_dispatch | `assembleDebug` + `assembleRelease` (tags v*) y upload artifact |
-
-## Diseño visual
-
-Sistema de diseño documentado en `.interface-design/system.md`.
-
-### Paleta de colores
-
-| Color | Código | Uso |
-|-------|--------|-----|
-| ClassicBurgundy | `#800020` | Primary, barras de navegación |
-| DarkBurgundy | `#4D0013` | Dorso de cartas, badges |
-| ClassicGold | `#C9A84C` | Secondary, acentos dorados |
-| Parchment | `#F5E6C8` | Superficie de cartas |
-| CardBorderGold | `#D4AF37` | Bordes dorados |
-
-### Gradiente de fondo
-
-`#1A0005 → #3D0C11 → #1A0005` (vertical) en todas las pantallas.
+| Build APK | push/PR + workflow_dispatch | `assembleDebug` + `assembleRelease` (tags v*) + upload artifact |
 
 ## Cartas Rider-Waite-Smith
 
-Las 78 imágenes provienen del deck Rider-Waite-Smith en dominio público, obtenidas de [yunru.se/tarot](https://yunru.se/tarot/). Cada carta se muestra con:
+Las 78 imágenes provienen del deck Rider-Waite-Smith en dominio público ([yunru.se/tarot](https://yunru.se/tarot/)). Cada carta muestra imagen original, nombre español, significado upright/invertido, keywords y elemento.
 
-- Imagen original del arcano
-- Nombre en español
-- Significado upright (derecha) e invertido
-- Palabras clave y elemento asociado
-
-## Estructura del proyecto
+## Estructura
 
 ```
 com.tarot.app/
