@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-App funcional con las 3 pantallas principales compilando y pasando todos los tests en CI/CD.
+App funcional con las 3 pantallas principales compilando y pasando todos los tests en CI/CD. UI completamente en español.
 
 ## Arquitectura
 
@@ -37,6 +37,8 @@ com.tarot.app/
 | Datos offline en JSON embebido | App 100% offline, sin API |
 | Kotlin nativo + Compose | App solo Android, mejor rendimiento que RN |
 | JUnit 5 + MockK | Tests modernos sin depende de AndroidJUnit |
+| UI en español | Traducción completa de navegación, tiradas, posiciones y etiquetas |
+| Flip 3D counter-rotation | `graphicsLayer(rotationY = 180f)` en cara frontal para evitar texto espejado |
 
 ## Tests (14 tests, todos passing)
 
@@ -59,11 +61,13 @@ Para ejecutar: `./gradlew :app:testDebugUnitTest`
 ## Lo que funciona
 
 - [x] Pantalla Daily con animación flip 3D y carta aleatoria
+- [x] Fix: texto de carta diaria ya no se muestra espejado (counter-rotation en flip)
 - [x] Pantalla Spreads con selector (1/3/10) + layout Celtic Cross
 - [x] Pantalla Mazo con grid 3 columnas + detalle en diálogo
 - [x] 78 cartas Rider-Waite-Smith con significados upright/reversed
 - [x] Tema clásico (burdeos/dorado/marfil)
-- [x] Bottom Navigation con 3 tabs
+- [x] Bottom Navigation con 3 tabs — etiquetas en español
+- [x] UI 100% en español (navegación, tiradas, posiciones, botones, etiquetas)
 - [x] Build APK exitoso (debug)
 - [x] CI/CD con GitHub Actions
 
@@ -76,6 +80,7 @@ Para ejecutar: `./gradlew :app:testDebugUnitTest`
 - [ ] Tests de UI (ComposeTestRule)
 - [ ] Publicación en Play Store
 - [ ] No hay pantalla de onboarding
+- [ ] Traducción de significados de cartas a español (actualmente en inglés en tarot_cards.json)
 
 ## Cómo compilar
 
