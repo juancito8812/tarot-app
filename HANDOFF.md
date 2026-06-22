@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-App funcional con las 3 pantallas principales compilando y pasando todos los tests en CI/CD. UI completamente en español.
+App funcional con las 3 pantallas principales compilando y pasando todos los tests en CI/CD. UI completamente en español con imágenes Rider-Waite-Smith empaquetadas.
 
 ## Arquitectura
 
@@ -26,6 +26,8 @@ com.tarot.app/
 - Navigation Compose con BottomNavigationBar (3 tabs: Daily, Spreads, Deck)
 - Datos: JSON en `res/raw/tarot_cards.json` parseado con `org.json.JSONObject`
 - Sin Room, sin Retrofit, sin dependencias de red
+- 78 imágenes RWS empaquetadas como drawables JPG (150KB total)
+- Sistema de diseño documentado en `.interface-design/system.md`
 
 ## Decisiones clave
 
@@ -39,6 +41,8 @@ com.tarot.app/
 | JUnit 5 + MockK | Tests modernos sin depende de AndroidJUnit |
 | UI en español | Traducción completa de navegación, tiradas, posiciones y etiquetas |
 | Flip 3D counter-rotation | `graphicsLayer(rotationY = 180f)` en cara frontal para evitar texto espejado |
+| Fondo gradiente místico | BackgroundGradient (borgoña oscuro) + acentos dorados en todas las pantallas |
+| Imágenes RWS desde yunru.se | Dominio público, 78 cartas Rider-Waite-Smith en JPG |
 
 ## Tests (14 tests, todos passing)
 
@@ -65,22 +69,29 @@ Para ejecutar: `./gradlew :app:testDebugUnitTest`
 - [x] Pantalla Spreads con selector (1/3/10) + layout Celtic Cross
 - [x] Pantalla Mazo con grid 3 columnas + detalle en diálogo
 - [x] 78 cartas Rider-Waite-Smith con significados upright/reversed
-- [x] Tema clásico (burdeos/dorado/marfil)
+- [x] Tema místico (gradiente oscuro, dorado, burdeos, parchment)
+- [x] 78 imágenes Rider-Waite-Smith empaquetadas como drawables
 - [x] Bottom Navigation con 3 tabs — etiquetas en español
 - [x] UI 100% en español (navegación, tiradas, posiciones, botones, etiquetas)
+- [x] 78 significados traducidos al español en JSON
 - [x] Build APK exitoso (debug)
 - [x] CI/CD con GitHub Actions
+- [x] Fondo gradiente en todas las pantallas
+- [x] TarotCardView con bordes dorados
+- [x] CardBack con borde dorado doble
+- [x] Animación glow pulsante en hint de Daily
+- [x] Badge circular numerado en posiciones de SpreadLayout
+- [x] Divisores decorativos dorados (HorizontalDivider)
+- [x] Sistema de diseño documentado (`.interface-design/system.md`)
 
 ## Lo que NO funciona / pendiente
 
-- [ ] Imágenes de cartas — no hay drawables empaquetados (las cartas se muestran sin imagen)
 - [ ] Animación de volteo en Spreads (solo en Daily)
 - [ ] Pantalla de configuración / ajustes
 - [ ] Dark mode
 - [ ] Tests de UI (ComposeTestRule)
 - [ ] Publicación en Play Store
 - [ ] No hay pantalla de onboarding
-- [ ] Traducción de significados de cartas a español (actualmente en inglés en tarot_cards.json)
 
 ## Cómo compilar
 

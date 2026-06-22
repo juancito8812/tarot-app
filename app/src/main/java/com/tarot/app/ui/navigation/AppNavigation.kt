@@ -1,4 +1,6 @@
 package com.tarot.app.ui.navigation
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
@@ -8,6 +10,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -17,6 +21,9 @@ import androidx.navigation.compose.rememberNavController
 import com.tarot.app.ui.daily.DailyScreen
 import com.tarot.app.ui.deck.DeckScreen
 import com.tarot.app.ui.spreads.SpreadsScreen
+import com.tarot.app.ui.theme.BackgroundGradient
+import com.tarot.app.ui.theme.ClassicBurgundy
+import com.tarot.app.ui.theme.ClassicGold
 
 data class BottomNavItem(val route: String, val label: String, val icon: ImageVector)
 
@@ -33,22 +40,38 @@ fun AppNavigation() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Tarot") },
+                title = {
+                    Text(
+                        "Tarot",
+                        fontFamily = FontFamily.Serif,
+                        fontSize = 22.sp
+                    )
+                },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                    containerColor = ClassicBurgundy,
+                    titleContentColor = ClassicGold
                 )
             )
         },
         bottomBar = {
-            NavigationBar {
+            NavigationBar(
+                containerColor = ClassicBurgundy,
+                contentColor = ClassicGold
+            ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
                 items.forEach { item ->
                     NavigationBarItem(
                         icon = { Icon(item.icon, contentDescription = item.label) },
-                        label = { Text(item.label) },
+                        label = { Text(item.label, fontFamily = FontFamily.Serif) },
                         selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = ClassicGold,
+                            selectedTextColor = ClassicGold,
+                            unselectedIconColor = ClassicGold.copy(alpha = 0.5f),
+                            unselectedTextColor = ClassicGold.copy(alpha = 0.5f),
+                            indicatorColor = ClassicBurgundy.copy(alpha = 0.3f)
+                        ),
                         onClick = {
                             navController.navigate(item.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
@@ -63,14 +86,20 @@ fun AppNavigation() {
             }
         }
     ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = "daily",
-            modifier = Modifier.padding(innerPadding)
+        Box(
+            modifier = Modifier
+                .padding(innerPadding)
+                .background(BackgroundGradient)
         ) {
-            composable("daily") { DailyScreen() }
-            composable("spreads") { SpreadsScreen() }
-            composable("deck") { DeckScreen() }
+            NavHost(
+                navController = navController,
+                startDestination = "daily",
+                modifier = Modifier.fillMaxSize()
+            ) {
+                composable("daily") { DailyScreen() }
+                composable("spreads") { SpreadsScreen() }
+                composable("deck") { DeckScreen() }
+            }
         }
     }
 }
